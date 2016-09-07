@@ -7,21 +7,33 @@
 //
 
 #import "ViewController.h"
+#import "QRCodeGenerator.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *qrCodeImageView;
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    //转换成UIImage对象
+    self.qrCodeImageView.image = [QRCodeGenerator qrCodeImageForString:@"http:www.ehuu.com" imageSize:CGRectGetWidth(self.qrCodeImageView.bounds)*3 avatarImage:[UIImage imageNamed:@"meinv.jpg"] avatarSize:CGSizeMake(100, 100)];
 }
 
-- (void)didReceiveMemoryWarning {
+
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 @end
+
+
+
+
