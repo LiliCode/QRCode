@@ -9,6 +9,10 @@
 #import "QRCodeScanner.h"
 #import <AVFoundation/AVFoundation.h>
 
+#define LMargin (20.0f)
+#define RMargin (20.0f)
+#define TMargin (140.0f)
+
 @interface QRCodeScanner ()<AVCaptureMetadataOutputObjectsDelegate>
 @property (strong , nonatomic) AVCaptureSession *session;       //捕获会话
 @property (strong , nonatomic) AVCaptureDeviceInput *input;     //设备输入
@@ -26,7 +30,8 @@
 @property (weak, nonatomic) IBOutlet UIView *scannerView;   //扫描区域视图
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scannerWidthConstraint;    //扫描区域宽度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scannerheightConstraint;   //扫描区域高端
-
+//显示消息
+@property (weak, nonatomic) IBOutlet UILabel *showMsgLabel;
 
 @end
 
@@ -35,7 +40,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     
     [self setupSannerUI];
     
@@ -104,20 +108,32 @@
         case ScanCodeTypeQRCode:
         {
             //设置二维码
-            
+            //设置识别区域
+            [self.output setRectOfInterest:[self getScanRect]];
         }break;
             
         case ScanCodeTypeBarCode:
         {
-            //设置条码
-            self.scannerheightConstraint.constant = 120.0f; //扫描条形码扫描区高度
-            
+            //设置条码扫描区域尺寸
+            CGSize size = [UIScreen mainScreen].bounds.size;
+            CGFloat w = size.width - LMargin - RMargin;
+            CGFloat h = w / 2.0f;
+            self.scannerheightConstraint.constant = h;  //扫描条形码扫描区高度
+            self.scannerWidthConstraint.constant = w;   //宽度
+            //设置识别区域
+            [self.output setRectOfInterest:[self getScanRect]];
         }break;
             
         default: break;
     }
 }
 
+- (void)setShowMsg:(NSString *)showMsg
+{
+    _showMsg = [showMsg copy];
+    
+    self.showMsgLabel.text = showMsg;
+}
 
 - (AVCaptureSession *)session
 {
@@ -155,6 +171,24 @@
     
     return _output;
 }
+
+/**
+ *  生成扫描区域的rect
+ *
+ *  @return 返回rect
+ */
+- (CGRect)getScanRect
+{
+    CGRect SCRect = [UIScreen mainScreen].bounds;
+    
+    CGFloat x = ((SCRect.size.width - self.scannerWidthConstraint.constant)/2.0f) / SCRect.size.width;
+    CGFloat y = TMargin / SCRect.size.height;
+    CGFloat w = self.scannerWidthConstraint.constant / SCRect.size.width;
+    CGFloat h = self.scannerheightConstraint.constant / SCRect.size.height;
+    
+    return CGRectMake(y, x, h, w);
+}
+
 
 + (instancetype)qrCodeScannerWithSuccess:(void (^)(QRCodeScanner *__weak, NSString *))successBlock failtrue:(void (^)(QRCodeScanner *__weak, NSError *))failtrueBlock cancel:(void (^)(QRCodeScanner *__weak))cancelBlock
 {

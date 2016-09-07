@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onz-DM-i2x">
-                        <rect key="frame" x="40" y="164" width="240" height="240"/>
+                        <rect key="frame" x="40" y="140" width="240" height="240"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="240" id="Gwj-82-FE7"/>
@@ -25,11 +25,14 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IWd-ut-6V7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="164"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="140" id="U4Y-fj-Kv9"/>
+                        </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaC-Jy-PLB">
-                        <rect key="frame" x="0.0" y="404" width="320" height="164"/>
+                        <rect key="frame" x="0.0" y="380" width="320" height="188"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="将二维码置于框类，即可扫描" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWb-0R-SdN">
                                 <rect key="frame" x="8" y="8" width="304" height="21"/>
@@ -41,7 +44,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCD-3T-gLz">
-                                <rect key="frame" x="0.0" y="114" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="138" width="320" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="C4q-6w-ug6"/>
@@ -67,11 +70,11 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tn5-Nb-rMa">
-                        <rect key="frame" x="0.0" y="164" width="40" height="240"/>
+                        <rect key="frame" x="0.0" y="140" width="40" height="240"/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVC-0X-VhT">
-                        <rect key="frame" x="280" y="164" width="40" height="240"/>
+                        <rect key="frame" x="280" y="140" width="40" height="240"/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </subviews>
@@ -85,7 +88,6 @@
                     <constraint firstItem="onz-DM-i2x" firstAttribute="centerX" secondItem="8E3-Rd-Vg4" secondAttribute="centerX" id="Cqg-aG-thl"/>
                     <constraint firstAttribute="trailing" secondItem="OaC-Jy-PLB" secondAttribute="trailing" id="Dyl-mb-Jq0"/>
                     <constraint firstAttribute="trailing" secondItem="TVC-0X-VhT" secondAttribute="trailing" id="LIr-5a-4h3"/>
-                    <constraint firstItem="onz-DM-i2x" firstAttribute="centerY" secondItem="8E3-Rd-Vg4" secondAttribute="centerY" id="Z8w-OI-dHz"/>
                     <constraint firstItem="onz-DM-i2x" firstAttribute="leading" secondItem="tn5-Nb-rMa" secondAttribute="trailing" id="cpk-6b-HRu"/>
                     <constraint firstItem="IWd-ut-6V7" firstAttribute="top" secondItem="8E3-Rd-Vg4" secondAttribute="top" id="dyZ-p3-HUs"/>
                     <constraint firstItem="TVC-0X-VhT" firstAttribute="leading" secondItem="onz-DM-i2x" secondAttribute="trailing" id="jia-0O-EPt"/>
@@ -105,6 +107,7 @@
                 <outlet property="scannerView" destination="onz-DM-i2x" id="5UW-5v-2zH"/>
                 <outlet property="scannerWidthConstraint" destination="Gwj-82-FE7" id="d3R-n1-pqc"/>
                 <outlet property="scannerheightConstraint" destination="zHc-9W-58g" id="gWj-Nd-ROG"/>
+                <outlet property="showMsgLabel" destination="sWb-0R-SdN" id="wRU-jG-naz"/>
                 <outlet property="topView" destination="IWd-ut-6V7" id="TIg-vB-pzL"/>
             </connections>
             <point key="canvasLocation" x="569" y="119"/>

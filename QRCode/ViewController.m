@@ -38,6 +38,7 @@
     }];
     
     scanner.codeType = ScanCodeTypeBarCode;
+    scanner.showMsg = @"将条形码置于框中，即可完成扫描";
     
     [self presentViewController:scanner animated:YES completion:nil];
 }
