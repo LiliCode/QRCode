@@ -34,7 +34,13 @@
                             <constraint firstItem="jSe-Cn-mpV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="yPb-zv-DhS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="二维码" id="fQR-Kd-Ueq"/>
+                    <navigationItem key="navigationItem" title="二维码" id="fQR-Kd-Ueq">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="97d-Re-Wsf">
+                            <connections>
+                                <action selector="scanner:" destination="BYZ-38-t0r" id="afe-fK-Oqe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="qrCodeImageView" destination="jSe-Cn-mpV" id="ooe-2H-Qur"/>
