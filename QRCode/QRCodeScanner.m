@@ -44,9 +44,14 @@
     [self setupSannerUI];
     
     [self setupScanner];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     //开始扫描
-    [self.session startRunning];
+    [self.session startRunning];    //防止在viewDidLoad方法中启动时卡顿
 }
 
 - (void)setupSannerUI
@@ -76,21 +81,6 @@
         [self.session addOutput:self.output];
     }
     
-    //可识别类型
-    //先判断是否支持这些类型，然后再添加类型
-    if ([self.output.availableMetadataObjectTypes containsObject:AVMetadataObjectTypeQRCode]||
-        [self.output.availableMetadataObjectTypes containsObject:AVMetadataObjectTypeCode128Code])
-    {
-        self.output.metadataObjectTypes =[NSArray arrayWithObjects:
-                                     AVMetadataObjectTypeQRCode,
-                                     AVMetadataObjectTypeCode39Code,
-                                     AVMetadataObjectTypeCode128Code,
-                                     AVMetadataObjectTypeCode39Mod43Code,
-                                     AVMetadataObjectTypeEAN13Code,
-                                     AVMetadataObjectTypeEAN8Code,
-                                     AVMetadataObjectTypeCode93Code, nil];
-    }
-    
     //创建预览层
     self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
     [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
@@ -110,6 +100,11 @@
             //设置二维码
             //设置识别区域
             [self.output setRectOfInterest:[self getScanRect]];
+            //设置扫描类型
+            if ([self.output.availableMetadataObjectTypes containsObject:AVMetadataObjectTypeQRCode])
+            {
+                self.output.metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
+            }
         }break;
             
         case ScanCodeTypeBarCode:
@@ -122,11 +117,22 @@
             self.scannerWidthConstraint.constant = w;   //宽度
             //设置识别区域
             [self.output setRectOfInterest:[self getScanRect]];
+            if ([self.output.availableMetadataObjectTypes containsObject:AVMetadataObjectTypeCode128Code])
+            {
+                self.output.metadataObjectTypes = @[AVMetadataObjectTypeCode39Code,
+                                                    AVMetadataObjectTypeCode128Code,
+                                                    AVMetadataObjectTypeCode39Mod43Code,
+                                                    AVMetadataObjectTypeEAN13Code,
+                                                    AVMetadataObjectTypeEAN8Code,
+                                                    AVMetadataObjectTypeCode93Code];
+            }
         }break;
             
         default: break;
     }
 }
+
+
 
 - (void)setShowMsg:(NSString *)showMsg
 {

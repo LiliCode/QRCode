@@ -20,22 +20,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jSe-Cn-mpV">
-                                <rect key="frame" x="36" y="160" width="248" height="248"/>
+                                <rect key="frame" x="36" y="90" width="248" height="248"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jSe-Cn-mpV" secondAttribute="height" multiplier="1:1" id="V3N-xl-0kr"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pl4-nw-eVh">
+                                <rect key="frame" x="20" y="361" width="280" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="uso-1l-3Th"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="jSe-Cn-mpV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Jee-lf-kTH"/>
+                            <constraint firstAttribute="trailing" secondItem="Pl4-nw-eVh" secondAttribute="trailing" constant="20" id="JyT-OM-TZL"/>
                             <constraint firstItem="jSe-Cn-mpV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="K3t-nj-izD"/>
+                            <constraint firstItem="Pl4-nw-eVh" firstAttribute="top" secondItem="jSe-Cn-mpV" secondAttribute="bottom" constant="23" id="X5n-vH-RNp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jSe-Cn-mpV" secondAttribute="trailing" constant="20" id="XFd-ql-2Pu"/>
-                            <constraint firstItem="jSe-Cn-mpV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="yPb-zv-DhS"/>
+                            <constraint firstItem="Pl4-nw-eVh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XTi-7O-AQb"/>
+                            <constraint firstItem="Pl4-nw-eVh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="bBm-Fb-J8L"/>
+                            <constraint firstItem="jSe-Cn-mpV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-70" id="yPb-zv-DhS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="二维码" id="fQR-Kd-Ueq">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="97d-Re-Wsf">
+                        <barButtonItem key="rightBarButtonItem" title="打开扫描" id="97d-Re-Wsf">
                             <connections>
                                 <action selector="scanner:" destination="BYZ-38-t0r" id="afe-fK-Oqe"/>
                             </connections>
@@ -43,6 +56,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="label" destination="Pl4-nw-eVh" id="b5K-58-DEM"/>
                         <outlet property="qrCodeImageView" destination="jSe-Cn-mpV" id="ooe-2H-Qur"/>
                     </connections>
                 </viewController>

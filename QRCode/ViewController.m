@@ -12,6 +12,7 @@
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *qrCodeImageView;
+@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 
@@ -21,8 +22,7 @@
 {
     [super viewDidLoad];
     
-    //转换成UIImage对象
-    self.qrCodeImageView.image = [QRCodeGenerator qrCodeImageForString:@"http:www.ehuu.com" imageSize:CGRectGetWidth(self.qrCodeImageView.bounds)*3 avatarImage:[UIImage imageNamed:@"meinv.jpg"] avatarSize:CGSizeMake(100, 100)];
+    
 }
 
 
@@ -30,6 +30,9 @@
 {
     QRCodeScanner *scanner = [QRCodeScanner qrCodeScannerWithSuccess:^(QRCodeScanner *__weak scanner, NSString *content) {
         NSLog(@"扫描出的信息：%@", content);
+        self.label.text = content;
+        //转换成UIImage对象
+        self.qrCodeImageView.image = [QRCodeGenerator qrCodeImageForString:content imageSize:CGRectGetWidth(self.qrCodeImageView.bounds)*3 avatarImage:[UIImage imageNamed:@"meinv.jpg"] avatarSize:CGSizeMake(100, 100)];
         [scanner dismissViewControllerAnimated:YES completion:nil];
     } failtrue:^(QRCodeScanner *__weak scanner, NSError *error) {
         [scanner dismissViewControllerAnimated:YES completion:nil];
